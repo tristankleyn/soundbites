@@ -1,6 +1,6 @@
 ---
-pagetitle: "74 | Southern Resident orcas"
-description: "Only 74 Southern Resident killer whales remain. Hear their call and see their numbers."
+pagetitle: "Southern Resident orcas"
+description: "Only 76 Southern Resident killer whales remain. Hear their call and see their numbers."
 include-after-body: assets/orca-script.html
 ---
 
@@ -14,41 +14,36 @@ include-after-body: assets/orca-script.html
 </button>
 <p class="call-hint" id="call-hint">Tap the call to hear it</p>
 <audio id="audio" src="assets/orca-call.mp3" preload="auto"></audio>
-<p class="big">74</p>
-<p class="lede">That is the whole population.<br>Every one fits on this page.</p>
 <p class="scroll-hint" aria-hidden="true">&#8595;</p>
 </section>
 
-<section aria-labelledby="count-title">
-<h2 id="count-title">Each block is one whale</h2>
-<p class="meta">Census of July 1, 2025. Every whale belongs to one of three pods.</p>
-<div id="grid" class="grid-wrap">
-<noscript><p>J pod 27, K pod 14, L pod 33. The population has reached 98 at its peak, 24 more than today.</p></noscript>
+<section class="data-section" aria-label="Whales, salmon catch and shipping by year">
+<p id="year" class="year">2025</p>
+
+```{=html}
+<div class="stats">
+<p class="stat s1"><span id="v1" class="num">74</span><span class="lab">whales</span></p>
+<p class="stat s2"><span id="v2" class="num"></span><span class="lab">Chinook salmon caught</span></p>
+<p class="stat s3"><span id="v3" class="num"></span><span class="lab">cargo and passenger ship entries</span></p>
 </div>
-</section>
+<svg id="plot" class="plot" viewBox="0 0 600 300" role="img" aria-label="Three lines by year: whale count, Chinook salmon caught and ship entries."></svg>
+<div class="slider-row">
+<button id="sweep" class="sweep" type="button" aria-label="Play timeline">&#9654;</button>
+<input id="slider" class="slider" type="range" min="1975" max="2026" step="1" value="2025" aria-label="Year">
+</div>
+```
 
-<section aria-labelledby="time-title">
-<h2 id="time-title">Numbers over time</h2>
-<div id="timeline" class="timeline"></div>
-<p class="note">Live captures for marine parks in the 1960s and early 1970s took 45 whales and killed at least 13 others. Listed as endangered in the United States in 2005.</p>
-</section>
-
-<section aria-labelledby="press-title">
-<h2 id="press-title">What is pressing on them</h2>
-<details><summary>Too little food</summary><p>They depend on Chinook salmon. Declining runs leave them nutritionally stressed, which affects reproduction.</p></details>
-<details><summary>Vessel noise</summary><p>Ship noise can mask the sounds they use to communicate and find food, and boat interference lowers foraging efficiency.</p></details>
-<details><summary>Contaminants</summary><p>Pollutants in the marine food web are one of the main threats named by NOAA Fisheries.</p></details>
-<details><summary>So few of them</summary><p>A small population has little margin, and these whales reproduce less than other killer whales in the region.</p></details>
+<p class="note">Each line is drawn against its own highest year, so compare the shapes, not the heights. Catch reflects both fish numbers and fishing limits, and a shared trend does not show cause.</p>
+<noscript><p>76 whales were counted in 2026. The full table is in data/orca-series.csv.</p></noscript>
 </section>
 
 <section class="closing">
-<h2>You are wearing this call</h2>
-<p>Profits from this shirt go to wildlife conservation.</p>
+<p>You are wearing this call. Profits from this shirt go to wildlife conservation.</p>
 <p><a href="https://www.orcasound.net/">Listen to the Salish Sea live with Orcasound</a></p>
 </section>
 
 <footer>
-<p><strong>Sources.</strong> Population, pods, peak and captures: <a href="https://www.whaleresearch.com/orca-population">Center for Whale Research</a>. Listing and threats: <a href="https://www.fisheries.noaa.gov/west-coast/marine-mammal-protection/infographic-how-and-why-southern-resident-killer-whales-were">NOAA Fisheries</a>. Food and reproduction: <a href="https://theorcasonian.com/orca-survey-2025-census-update">The Orca Sonian</a>. Vessel noise: <a href="https://www.orcasound.net/">Orcasound</a>.</p>
+<p><strong>Data.</strong> Whales: July 1 census, 1976 to 2026, <a href="https://vitalsigns.pugetsoundinfo.wa.gov/VitalSignIndicator/Detail/32">Puget Sound Vital Signs</a> from the Center for Whale Research. Salmon: landed Chinook, 1975 to 2025, in Georgia Strait, Juan de Fuca, San Juan and other Puget Sound fisheries, <a href="https://www.psc.org/publications/technical-reports/technical-committee-reports/chinook/ctc-data-sets/">Pacific Salmon Commission</a> TCCHINOOK (26)-03, Tables A13 and A15 to A18. Ships: cargo and passenger vessels entering Washington waters, excluding the Columbia River, 1993 to 2025, <a href="https://apps.ecology.wa.gov/publications/SummaryPages/2608002.html">Washington Department of Ecology</a>. <a href="data/orca-series.csv">Download the table</a>.</p>
 </footer>
 
 </main>
