@@ -33,9 +33,28 @@
     els.forEach(function (e) { io.observe(e); });
   } else { els.forEach(function (e) { e.classList.add("in"); }); }
 
-  var a = document.getElementById("audio"), btn = document.getElementById("play"), lab = document.getElementById("play-label");
-  a.addEventListener("loadedmetadata", function () { btn.hidden = false; });
-  btn.addEventListener("click", function () { if (a.paused) { a.play(); lab.textContent = "Pause"; } else { a.pause(); lab.textContent = "Hear this call"; } });
-  a.addEventListener("ended", function () { lab.textContent = "Hear this call"; });
+  // The solid graphic wipes in from the left over the length of the clip.
+  var a = document.getElementById("audio"), call = document.getElementById("call"),
+      top = document.getElementById("call-top"), hint = document.getElementById("call-hint"), raf;
+  function wipe(p) { top.style.clipPath = "inset(0 " + (100 - p * 100) + "% 0 0)"; }
+  function tick() {
+    if (a.duration) wipe(Math.min(a.currentTime / a.duration, 1));
+    if (!a.paused && !a.ended) raf = requestAnimationFrame(tick);
+  }
+  function reset() {
+    cancelAnimationFrame(raf); call.classList.remove("active");
+    call.setAttribute("aria-pressed", "false"); top.style.clipPath = "";
+    hint.textContent = "Tap the call to hear it";
+  }
+  call.addEventListener("click", function () {
+    if (!a.paused) { a.pause(); hint.textContent = "Paused. Tap to continue"; return; }
+    if (a.ended || !call.classList.contains("active")) { a.currentTime = 0; wipe(0); }
+    call.classList.add("active"); call.setAttribute("aria-pressed", "true");
+    hint.textContent = "Listening";
+    var pr = a.play();
+    if (pr && pr.catch) pr.catch(function () { reset(); hint.textContent = "The sound could not play"; });
+  });
+  a.addEventListener("play", function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
+  a.addEventListener("ended", reset);
 })();
 </script>
