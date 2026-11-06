@@ -8,10 +8,12 @@ include-after-body: assets/orca-script.html
 
 <section class="hero">
 <p class="kicker">Southern Resident killer whales</p>
-<img class="call" src="assets/orca-call.png" alt="Spectrogram of an orca call: bright harmonic lines rising across the image.">
-<!-- Add your clip as assets/orca-call.mp3 and this button appears. -->
-<button id="play" class="play" type="button" hidden><span aria-hidden="true">&#9654;</span> <span id="play-label">Hear this call</span></button>
-<audio id="audio" src="assets/orca-call.mp3" preload="metadata"></audio>
+<button id="call" class="call" type="button" aria-label="Play the orca call" aria-pressed="false">
+<img class="call-base" src="assets/orca-call.png" alt="">
+<img id="call-top" class="call-top" src="assets/orca-call.png" alt="Spectrogram of an orca call: harmonic lines rising across the image.">
+</button>
+<p class="call-hint" id="call-hint">Tap the call to hear it</p>
+<audio id="audio" src="assets/orca-call.mp3" preload="auto"></audio>
 <p class="big">74</p>
 <p class="lede">That is the whole population.<br>Every one fits on this page.</p>
 <p class="scroll-hint" aria-hidden="true">&#8595;</p>
