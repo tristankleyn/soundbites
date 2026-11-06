@@ -1,7 +1,9 @@
 ---
 pagetitle: "Southern Resident orcas"
 description: "Only 76 Southern Resident killer whales remain. Hear their call and see their numbers."
-include-after-body: assets/orca-script.html
+include-after-body:
+  - assets/orca-script.html
+  - assets/ears.html
 ---
 
 <main class="page">
@@ -38,9 +40,27 @@ include-after-body: assets/orca-script.html
 </section>
 
 <section class="closing">
-<p>You are wearing this call. Profits from this shirt go to wildlife conservation.</p>
+<p>You are wearing this call.</p>
 <p><a href="https://www.orcasound.net/">Listen to the Salish Sea live with Orcasound</a></p>
 </section>
+
+```{=html}
+<section class="ears" data-animal="orca" aria-labelledby="ears-title">
+<h2 id="ears-title"><span class="ears-word">EARS</span> for orcas</h2>
+<p class="ears-lede">All of our proceeds go to supporting wildlife. Have your own say below in where the money goes.</p>
+<form class="ears-code" novalidate>
+<label for="ears-key">Code from your shirt tag</label>
+<input id="ears-key" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" maxlength="9">
+</form>
+<div class="ears-grid" role="group" aria-label="Choose where the money goes">
+<button type="button" class="ears-opt" data-choice="E" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 13c-5-3-11-4-17-3v26c6-1 12 0 17 3 5-3 11-4 17-3V10c-6-1-12 0-17 3z"/><path d="M24 13v26"/></svg><span class="ears-name"><b>E</b>ducation</span><span class="ears-desc">Teaching and outreach</span><span class="ears-pct" data-k="E"></span></button>
+<button type="button" class="ears-opt" data-choice="A" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l15 6v11c0 9-6 16-15 19C15 39 9 32 9 23V12z"/><path d="M24 33c-4-3-5-8-1-13 3 3 6 6 1 13zM24 33v-9"/></svg><span class="ears-name"><b>A</b>ction</span><span class="ears-desc">Protecting habitat and reducing threats</span><span class="ears-pct" data-k="A"></span></button>
+<button type="button" class="ears-opt" data-choice="R" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 24h4l3-8 4 16 4-12 3 8 3-4h3"/><circle cx="33" cy="22" r="8"/><path d="M39 28l5 5"/></svg><span class="ears-name"><b>R</b>esearch</span><span class="ears-desc">Monitoring and science</span><span class="ears-pct" data-k="R"></span></button>
+<button type="button" class="ears-opt" data-choice="S" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 30V18"/><path d="M24 20c-1-5-5-8-10-8 0 5 4 9 10 8zM24 23c1-5 5-8 10-8 0 5-4 9-10 8z"/><path d="M6 33c4 0 6 3 10 3h8c2 0 2-3 0-3h-6M42 33c-4 0-6 3-10 3"/><path d="M6 40c6 0 9 2 18 2s12-2 18-2"/></svg><span class="ears-name"><b>S</b>tewardship</span><span class="ears-desc">Community-led conservation</span><span class="ears-pct" data-k="S"></span></button>
+</div>
+<p class="ears-msg" aria-live="polite"></p>
+</section>
+```
 
 <footer>
 <p><strong>Data.</strong> Whales: July 1 census, 1976 to 2026, <a href="https://vitalsigns.pugetsoundinfo.wa.gov/VitalSignIndicator/Detail/32">Puget Sound Vital Signs</a> from the Center for Whale Research. Salmon: landed Chinook, 1975 to 2025, in Georgia Strait, Juan de Fuca, San Juan and other Puget Sound fisheries, <a href="https://www.psc.org/publications/technical-reports/technical-committee-reports/chinook/ctc-data-sets/">Pacific Salmon Commission</a> TCCHINOOK (26)-03, Tables A13 and A15 to A18. Ships: cargo and passenger vessels entering Washington waters, excluding the Columbia River, 1993 to 2025, <a href="https://apps.ecology.wa.gov/publications/SummaryPages/2608002.html">Washington Department of Ecology</a>. <a href="data/orca-series.csv">Download the table</a>.</p>

@@ -44,3 +44,32 @@ footer{border-top:1px solid var(--line);padding:26px 0 44px;font-size:13px}
 .landing{padding-top:20vh}
 .landing h1{font:300 44px Fraunces,Georgia,serif;margin:0}
 :focus-visible{outline:2px solid var(--orange);outline-offset:3px}
+.blue{--s1:#0b2a6f;--s2:#2f5aa8;--s3:#8aa9d6}
+@media (prefers-color-scheme:dark){.blue{--s1:#b9d0f5;--s2:#6f9be0;--s3:#5a7fc0}}
+.call-tall{max-width:300px;margin:0 auto}
+.blue .lede{margin-top:26px}
+.est .ci{stroke:var(--c);stroke-width:2;opacity:.45}
+.est .ept{fill:var(--c);stroke:var(--bg);stroke-width:2}
+.est.alt .ept{fill:var(--bg);stroke:var(--c);stroke-width:2.5}
+.blue .slider{accent-color:var(--s1)}
+@media (prefers-color-scheme:dark){.call-tall img{filter:brightness(2.3) saturate(.9)}}
+.ears{border-top:1px solid var(--line);padding:56px 0 48px}
+.ears h2{margin:0 0 10px}
+.ears-word{font-weight:500;letter-spacing:.06em}
+.ears-lede{margin:0 0 24px;color:var(--muted)}
+.ears-code{display:flex;flex-direction:column;gap:6px;margin:0 0 18px}
+.ears-code label{font-size:14px;font-weight:500}
+.ears-code input{width:12ch;min-height:44px;padding:0 12px;border:1px solid var(--line);border-radius:8px;background:none;color:var(--ink);font:500 18px Inter,sans-serif;letter-spacing:.08em}
+.ears-code input:focus{outline:2px solid var(--ink);outline-offset:1px}
+.ears-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.ears-opt{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:3px;min-height:150px;padding:16px;border:1px solid var(--line);border-radius:12px;background:none;color:var(--ink);text-align:left;font:inherit;cursor:pointer;transition:border-color .2s,background .2s}
+.ears-opt:disabled{cursor:default}
+.ears-opt:not(:disabled):hover{border-color:var(--ink)}
+.ears-opt.chosen{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.ears-opt svg{width:40px;height:40px;margin-bottom:8px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.ears-name{font-size:17px}
+.ears-name b{font-weight:600;font-size:20px}
+.ears-desc{font-size:13px;color:var(--muted);line-height:1.35}
+.ears-pct{position:absolute;top:14px;right:16px;font:500 18px Inter,sans-serif;font-variant-numeric:tabular-nums}
+.ears-msg{min-height:1.5em;margin:14px 0 0;font-size:14px;color:var(--muted)}
+@media (min-width:640px){.ears-grid{grid-template-columns:repeat(4,1fr)}}

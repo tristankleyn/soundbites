@@ -1,0 +1,92 @@
+<script>
+(function () {
+  // [year, blue whales caught worldwide, seaborne trade in million tons]. Full table: data/blue-whale-series.csv
+  var SERIES = [[1900,381,null],[1901,299,null],[1902,142,null],[1903,492,null],[1904,873,null],[1905,1053,null],[1906,545,null],[1907,497,null],[1908,722,null],[1909,584,null],[1910,701,null],[1911,1869,null],[1912,3195,null],[1913,3360,null],[1914,5776,null],[1915,5876,null],[1916,4605,null],[1917,3394,null],[1918,2359,null],[1919,2168,null],[1920,3265,null],[1921,4697,null],[1922,6950,null],[1923,5100,null],[1924,6975,null],[1925,6517,null],[1926,9014,null],[1927,10535,null],[1928,14833,null],[1929,19171,null],[1930,30727,null],[1931,6732,null],[1932,19180,null],[1933,17542,null],[1934,16719,null],[1935,18064,null],[1936,14755,null],[1937,15297,null],[1938,14231,null],[1939,11566,null],[1940,5028,null],[1941,144,null],[1942,147,null],[1943,365,null],[1944,1057,null],[1945,3674,null],[1946,9283,null],[1947,7034,null],[1948,7873,null],[1949,6338,null],[1950,7180,null],[1951,5327,null],[1952,4152,null],[1953,3045,null],[1954,2758,null],[1955,1894,null],[1956,1876,null],[1957,1923,null],[1958,1383,null],[1959,1094,null],[1960,1829,null],[1961,1237,null],[1962,1898,null],[1963,2113,null],[1964,3603,null],[1965,1756,null],[1966,726,null],[1967,558,null],[1968,730,null],[1969,977,null],[1970,855,2605],[1971,552,null],[1972,7,null],[1973,2,null],[1974,0,null],[1975,0,null],[1976,1,null],[1977,2,null],[1978,3,null],[1979,0,null],[1980,0,3704],[1981,0,null],[1982,0,null],[1983,0,null],[1984,0,null],[1985,0,null],[1986,0,null],[1987,0,null],[1988,0,null],[1989,0,null],[1990,0,4008],[1991,0,null],[1992,0,null],[1993,0,null],[1994,0,null],[1995,0,null],[1996,0,null],[1997,0,null],[1998,0,null],[1999,0,null],[2000,0,5984],[2001,0,null],[2002,0,null],[2003,0,null],[2004,0,null],[2005,0,7109],[2006,0,7702],[2007,0,8036],[2008,0,8231],[2009,0,7857],[2010,0,8408],[2011,0,8775],[2012,0,9195],[2013,0,9513],[2014,0,9842],[2015,0,10023],[2016,0,10295],[2017,0,10716],[2018,0,11019],[2019,0,11071],[2020,0,10648],[2021,0,null],[2022,0,null],[2023,0,12292],[2024,0,12720],[2025,null,null]];
+  // Antarctic blue whale estimates: [year, estimate, low 95%, high 95%, 1 = different method]
+  var EST = [[1981,453,213,964,0],[1988,559,233,1342,0],[1998,2280,1150,4519,0],[2019,1817,714,4624,1]];
+  var Y0 = 1900, Y1 = 2024, svg = document.getElementById("plot"), NS = "http://www.w3.org/2000/svg";
+  function el(n, at, p) { var e = document.createElementNS(NS, n); for (var k in at) e.setAttribute(k, at[k]); (p||svg).appendChild(e); return e; }
+  var W = 600, H = 300, L = 8, R = 8, T = 12, B = 30;
+  function X(y) { return L + (y-Y0)/(Y1-Y0)*(W-L-R); }
+  function YY(f) { return H-B - f*(H-B-T); }
+  [0, .5, 1].forEach(function (f) { el("line", {class:"grid", x1:L, x2:W-R, y1:YY(f), y2:YY(f)}); });
+  [1900,1950,2000,2024].forEach(function (y) { var t = el("text", {class:"tick", x:X(y), y:H-8, "text-anchor": y===Y0 ? "start" : y===Y1 ? "end" : "middle"}); t.textContent = y; });
+  var cursor = el("line", {class:"cursor", y1:T, y2:H-B});
+  var LINES = [{i:1, cls:"s2"}, {i:2, cls:"s3", dots:true}];
+  LINES.forEach(function (l) {
+    l.max = Math.max.apply(null, SERIES.map(function (r) { return r[l.i] || 0; }));
+    l.path = el("path", {class:"line "+l.cls});
+    l.g = el("g", {class:l.cls});
+    l.node = document.getElementById("v"+l.i);
+  });
+  var emax = Math.max.apply(null, EST.map(function (e) { return e[3]; }));
+  var ests = EST.map(function (e) {
+    var g = el("g", {class:"est s1"+(e[4] ? " alt" : "")});
+    el("line", {class:"ci", x1:X(e[0]), x2:X(e[0]), y1:YY(e[2]/emax), y2:YY(e[3]/emax)}, g);
+    el("circle", {class:"ept", cx:X(e[0]), cy:YY(e[1]/emax), r:5}, g);
+    return {e:e, g:g};
+  });
+  var slider = document.getElementById("slider"), yr = document.getElementById("year"), vw = document.getElementById("v0");
+  function fmt(n) { return n.toLocaleString("en-US"); }
+  function draw(year) {
+    yr.textContent = year;
+    cursor.setAttribute("x1", X(year)); cursor.setAttribute("x2", X(year));
+    LINES.forEach(function (l) {
+      var d = "", at = null; l.g.innerHTML = "";
+      SERIES.forEach(function (r) {
+        if (r[0] > year || r[l.i] === null) return;
+        var x = X(r[0]).toFixed(1), y = YY(r[l.i]/l.max).toFixed(1);
+        d += (d ? "L" : "M") + x + " " + y;
+        if (l.dots) el("circle", {class:"pt", cx:x, cy:y, r:2.6}, l.g);
+        if (r[0] === year) at = r[l.i];
+      });
+      l.path.setAttribute("d", d);
+      l.node.textContent = at === null ? "No data" : fmt(at);
+      l.node.parentNode.classList.toggle("missing", at === null);
+    });
+    var last = null;
+    ests.forEach(function (s) { var on = s.e[0] <= year; s.g.style.display = on ? "" : "none"; if (on) last = s.e; });
+    vw.textContent = last ? fmt(last[1]) : "No estimate";
+    vw.parentNode.classList.toggle("missing", !last);
+    document.getElementById("v0y").textContent = last ? "Antarctic estimate, " + last[0] : "Antarctic estimate";
+  }
+  slider.addEventListener("input", function () { stop(); draw(+slider.value); });
+  var timer = null, sw = document.getElementById("sweep");
+  function stop() { if (timer) { clearInterval(timer); timer = null; sw.innerHTML = "&#9654;"; sw.setAttribute("aria-label","Play timeline"); } }
+  sw.addEventListener("click", function () {
+    if (timer) return stop();
+    if (+slider.value >= Y1) slider.value = Y0;
+    draw(+slider.value); sw.innerHTML = "&#10074;&#10074;"; sw.setAttribute("aria-label","Pause timeline");
+    timer = setInterval(function () {
+      if (+slider.value >= Y1) return stop();
+      slider.value = +slider.value + 1; draw(+slider.value);
+    }, 110);
+  });
+  draw(Y1);
+
+  // The solid graphic wipes in from the left while the call itself is sounding.
+  var a = document.getElementById("audio"), call = document.getElementById("call"),
+      top = document.getElementById("call-top"), hint = document.getElementById("call-hint"), raf;
+  var C0 = +a.dataset.start, C1 = +a.dataset.end;
+  function wipe(p) { top.style.clipPath = "inset(0 " + (100 - p * 100) + "% 0 0)"; }
+  function tick() {
+    wipe(Math.min(Math.max((a.currentTime - C0) / (C1 - C0), 0), 1));
+    if (!a.paused && !a.ended) raf = requestAnimationFrame(tick);
+  }
+  function reset() {
+    cancelAnimationFrame(raf); call.classList.remove("active");
+    call.setAttribute("aria-pressed", "false"); top.style.clipPath = "";
+    hint.textContent = "Tap the call to hear it, sped up 10 times";
+  }
+  call.addEventListener("click", function () {
+    if (!a.paused) { a.pause(); hint.textContent = "Paused. Tap to continue"; return; }
+    if (a.ended || !call.classList.contains("active")) { a.currentTime = 0; wipe(0); }
+    call.classList.add("active"); call.setAttribute("aria-pressed", "true");
+    hint.textContent = "Listening";
+    var pr = a.play();
+    if (pr && pr.catch) pr.catch(function () { reset(); hint.textContent = "The sound could not play"; });
+  });
+  a.addEventListener("play", function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
+  a.addEventListener("ended", reset);
+})();
+</script>
