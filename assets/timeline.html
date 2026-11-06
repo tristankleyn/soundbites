@@ -3,6 +3,7 @@
   // Simple timeline: one bold line for the animals, thin lines for pressures.
   // Each line is drawn against its own range so the shapes can be compared.
   var T = window.TL, NS = "http://www.w3.org/2000/svg";
+  if (T && document.getElementById("plot")) {
   var svg = document.getElementById("plot"), stats = document.getElementById("stats");
   var slider = document.getElementById("slider"), yr = document.getElementById("year");
   slider.min = T.y0; slider.max = T.y1; slider.value = T.start;
@@ -64,6 +65,7 @@
     }, step);
   });
   draw(+slider.value);
+  }
 
   // The solid graphic wipes in from the left while the call itself is sounding.
   var a = document.getElementById("audio"), call = document.getElementById("call"),

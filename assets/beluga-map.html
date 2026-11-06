@@ -1,0 +1,23 @@
+<script>
+(function () {
+  // Year-by-year ship traffic maps, cross-faded by the slider.
+  var imgs = [].slice.call(document.querySelectorAll("#tmap img")), slider = document.getElementById("slider"),
+      yr = document.getElementById("year"), sw = document.getElementById("sweep"), timer = null;
+  function show(i) {
+    imgs.forEach(function (im, k) { im.classList.toggle("on", k === i); if (Math.abs(k - i) <= 1) im.loading = "eager"; });
+    yr.textContent = imgs[i].dataset.year;
+  }
+  function stop() { if (timer) { clearInterval(timer); timer = null; sw.innerHTML = "&#9654;"; sw.setAttribute("aria-label", "Play timeline"); } }
+  slider.addEventListener("input", function () { stop(); show(+slider.value); });
+  sw.addEventListener("click", function () {
+    if (timer) return stop();
+    if (+slider.value >= imgs.length - 1) slider.value = 0;
+    show(+slider.value); sw.innerHTML = "&#10074;&#10074;"; sw.setAttribute("aria-label", "Pause timeline");
+    timer = setInterval(function () {
+      if (+slider.value >= imgs.length - 1) return stop();
+      slider.value = +slider.value + 1; show(+slider.value);
+    }, 900);
+  });
+  show(+slider.value);
+})();
+</script>

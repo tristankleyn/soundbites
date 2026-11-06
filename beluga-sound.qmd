@@ -1,8 +1,8 @@
 ---
 pagetitle: "Belugas"
-description: "Hear a beluga whistle and see Cook Inlet belugas beside sea ice, shipping and ocean temperature."
+description: "Hear a beluga whistle and watch ship traffic grow in Hudson Bay."
 include-after-body:
-  - assets/beluga-script.html
+  - assets/beluga-map.html
   - assets/timeline.html
   - assets/ears.html
 ---
@@ -21,20 +21,35 @@ include-after-body:
 <p class="scroll-hint" aria-hidden="true">&#8595;</p>
 </section>
 
-<section class="data-section" aria-label="Cook Inlet belugas, Arctic sea ice, shipping and ocean temperature by year">
-<p id="year" class="year"></p>
+<section class="data-section" aria-label="Ship traffic in Hudson Bay by year">
+<p id="year" class="year">2025</p>
+<p class="map-lede">Ship traffic in Hudson Bay and its Atlantic approaches</p>
 
 ```{=html}
-<div class="stats" id="stats"></div>
-<svg id="plot" class="plot" viewBox="0 0 600 250" role="img" aria-label="Cook Inlet belugas, Arctic sea ice, shipping and ocean temperature by year. One bold line for the whales and thinner lines for pressures."></svg>
+<div class="trafficmap" id="tmap">
+<img src="assets/maps/hb-traffic-2011.webp" alt="Ship traffic in Hudson Bay, 2011" data-year="2011" loading="eager" decoding="async">
+<img src="assets/maps/hb-traffic-2012.webp" alt="Ship traffic in Hudson Bay, 2012" data-year="2012" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2013.webp" alt="Ship traffic in Hudson Bay, 2013" data-year="2013" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2014.webp" alt="Ship traffic in Hudson Bay, 2014" data-year="2014" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2015.webp" alt="Ship traffic in Hudson Bay, 2015" data-year="2015" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2016.webp" alt="Ship traffic in Hudson Bay, 2016" data-year="2016" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2017.webp" alt="Ship traffic in Hudson Bay, 2017" data-year="2017" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2018.webp" alt="Ship traffic in Hudson Bay, 2018" data-year="2018" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2019.webp" alt="Ship traffic in Hudson Bay, 2019" data-year="2019" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2020.webp" alt="Ship traffic in Hudson Bay, 2020" data-year="2020" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2021.webp" alt="Ship traffic in Hudson Bay, 2021" data-year="2021" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2022.webp" alt="Ship traffic in Hudson Bay, 2022" data-year="2022" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2024.webp" alt="Ship traffic in Hudson Bay, 2024" data-year="2024" loading="lazy" decoding="async">
+<img src="assets/maps/hb-traffic-2025.webp" alt="Ship traffic in Hudson Bay, 2025" data-year="2025" loading="eager" decoding="async">
+</div>
 <div class="slider-row">
 <button id="sweep" class="sweep" type="button" aria-label="Play timeline">&#9654;</button>
-<input id="slider" class="slider" type="range" step="1" aria-label="Year">
+<input id="slider" class="slider" type="range" min="0" max="13" step="1" value="13" aria-label="Year">
 </div>
+<div class="map-key" aria-hidden="true"><span>Fewer ships</span><span class="ramp"></span><span>More ships</span></div>
 ```
 
-<p class="note">The bold line is the Cook Inlet belugas, the longest yearly survey series for the species; no yearly count exists worldwide. Estimates before 2004 used earlier methods. Each line is drawn against its own range, so compare shapes, not heights.</p>
-<noscript><p>The full table is in the data folder.</p></noscript>
+<p class="note">Each map shows a year of ship positions from AIS, the tracking signal most large vessels broadcast. Yellow is light traffic and red is heavy. There is no map for 2023.</p>
 </section>
 
 <section class="closing">
@@ -60,7 +75,7 @@ include-after-body:
 ```
 
 <footer>
-<p><strong>Data.</strong> Cook Inlet belugas: 1979 estimate from Calkins (1989), cited in the <a href="https://media.fisheries.noaa.gov/2022-09/cibw-5-year-review-2022.pdf">NOAA 5-year review (2022)</a>; 1994 to 2003 from <a href="https://www.fisheries.noaa.gov/resource/data/aerial-surveys-belugas-cook-inlet">NOAA aerial surveys</a> (Hobbs et al.); 2004 to 2022 from <a href="https://media.fisheries.noaa.gov/2023-06/PR2023-03.pdf">Goetz et al. (2023)</a>, whose recommended best estimate is 331. Sea ice: <a href="https://nsidc.org/data/g02135">NSIDC Sea Ice Index</a>, September extent. Shipping: total goods loaded, <a href="https://unctad.org/system/files/official-document/rmt2021_en_0.pdf">UNCTAD Review of Maritime Transport</a> (2021, 2024 and 2025 editions); years without a published total are bridged with a straight line. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against the 1901 to 2000 average. <a href="data/beluga-series.csv">Download the table</a>. The call is synthesized from a published spectrogram, not a recording.</p>
+<p><strong>Data.</strong> Ship traffic maps: <a href="https://globalmaritimetraffic.org/">Global Maritime Traffic Density Service</a>, yearly AIS vessel density, 2011 to 2025. Cook Inlet belugas: 1979 estimate from Calkins (1989), cited in the <a href="https://media.fisheries.noaa.gov/2022-09/cibw-5-year-review-2022.pdf">NOAA 5-year review (2022)</a>; 1994 to 2003 from <a href="https://www.fisheries.noaa.gov/resource/data/aerial-surveys-belugas-cook-inlet">NOAA aerial surveys</a> (Hobbs et al.); 2004 to 2022 from <a href="https://media.fisheries.noaa.gov/2023-06/PR2023-03.pdf">Goetz et al. (2023)</a>, whose recommended best estimate is 331. Sea ice: <a href="https://nsidc.org/data/g02135">NSIDC Sea Ice Index</a>, September extent. Shipping: total goods loaded, <a href="https://unctad.org/system/files/official-document/rmt2021_en_0.pdf">UNCTAD Review of Maritime Transport</a> (2021, 2024 and 2025 editions); years without a published total are bridged with a straight line. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against the 1901 to 2000 average. <a href="data/beluga-series.csv">Download the table</a>. The call is synthesized from a published spectrogram, not a recording.</p>
 </footer>
 
 </main>

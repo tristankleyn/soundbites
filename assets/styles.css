@@ -101,3 +101,13 @@ html:has(main.orca),html:has(main.blue),html:has(main.beluga){--line:rgba(25,23,
 .series .dot{fill:var(--c);stroke:var(--bg);stroke-width:2}
 .axis{stroke:var(--ink);stroke-width:1;opacity:.35}
 #stats .stat.missing .num{font-size:15px;font-weight:400;color:var(--muted)}
+/* Ship traffic map timeline */
+.map-lede{margin:-6px 0 16px;color:var(--muted);font-size:15px}
+.trafficmap{position:relative;width:100%;aspect-ratio:888/608;margin:0 0 6px;
+  -webkit-mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent);
+  -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,transparent,#000 7%,#000 93%,transparent),linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent);mask-composite:intersect}
+.trafficmap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s ease}
+.trafficmap img.on{opacity:.82}
+@media (prefers-color-scheme:dark){.trafficmap img.on{opacity:.7}}
+.map-key{display:flex;align-items:center;gap:8px;margin:4px 0 0;font-size:12px;color:var(--muted)}
+.map-key .ramp{flex:0 0 120px;height:8px;border-radius:4px;background:linear-gradient(to right,#fbf1a0,#f9c74f,#f08a3c,#d9472b,#8c1d18);opacity:.85}
