@@ -1,8 +1,9 @@
 ---
 pagetitle: "Belugas"
-description: "Hear a beluga whistle and see two beluga populations beside Arctic sea ice and ocean temperature."
+description: "Hear a beluga whistle and see Cook Inlet belugas beside sea ice, shipping and ocean temperature."
 include-after-body:
   - assets/beluga-script.html
+  - assets/timeline.html
   - assets/ears.html
 ---
 
@@ -16,30 +17,24 @@ include-after-body:
 </button>
 <p class="call-hint" id="call-hint">Tap the call to hear it, at real speed</p>
 <audio id="audio" src="assets/beluga-call.mp3" preload="auto" data-start="0.92" data-end="1.72"></audio>
-<p class="lede">Cook Inlet in Alaska had about 1,300 belugas in 1979. Recent surveys count about 300 to 400. In eastern Hudson Bay, the 2024 survey found about 1,500, the lowest yet.</p>
+<p class="lede">Cook Inlet in Alaska had about 1,300 belugas in 1979. Recent surveys count about 300 to 400.</p>
 <p class="scroll-hint" aria-hidden="true">&#8595;</p>
 </section>
 
-<section class="data-section" aria-label="Beluga estimates, Arctic sea ice and ocean temperature by year">
-<p id="year" class="year">2025</p>
+<section class="data-section" aria-label="Cook Inlet belugas, Arctic sea ice, shipping and ocean temperature by year">
+<p id="year" class="year"></p>
 
 ```{=html}
-<div class="stats">
-<p class="stat s1"><span id="v0" class="num"></span><span class="lab" id="v0y" data-base="Cook Inlet belugas">Cook Inlet belugas</span></p>
-<p class="stat s2"><span id="v1" class="num"></span><span class="lab" id="v1y" data-base="Western Hudson Bay belugas">Western Hudson Bay belugas</span></p>
-<p class="stat s3"><span id="v2" class="num"></span><span class="lab" id="v2y" data-base="Eastern Hudson Bay belugas">Eastern Hudson Bay belugas</span></p>
-<p class="stat s4"><span id="v3" class="num"></span><span class="lab">million km² of Arctic sea ice in September</span></p>
-<p class="stat s5"><span id="v4" class="num"></span><span class="lab">ocean temperature vs the 20th-century average</span></p>
-</div>
-<svg id="plot" class="plot" viewBox="0 0 600 384" role="img" aria-label="Survey estimates for three beluga populations with 95% ranges, above Arctic sea ice in September and global ocean temperature, 1975 to 2026."></svg>
+<div class="stats" id="stats"></div>
+<svg id="plot" class="plot" viewBox="0 0 600 250" role="img" aria-label="Cook Inlet belugas, Arctic sea ice, shipping and ocean temperature by year. One bold line for the whales and thinner lines for pressures."></svg>
 <div class="slider-row">
 <button id="sweep" class="sweep" type="button" aria-label="Play timeline">&#9654;</button>
-<input id="slider" class="slider" type="range" min="1975" max="2026" step="1" value="2025" aria-label="Year">
+<input id="slider" class="slider" type="range" step="1" aria-label="Year">
 </div>
 ```
 
-<p class="note">Beluga numbers are survey estimates, shown as dots with 95% ranges cut off at the top of the chart, and each population is drawn against its own highest estimate. Hollow Cook Inlet dots use earlier methods, so they don't line up exactly with the solid ones. Sea ice is drawn from zero; ocean temperature is stretched to fill its panel. The figure shown for each population is its most recent survey up to the chosen year.</p>
-<noscript><p>The full table is in data/beluga-series.csv.</p></noscript>
+<p class="note">The bold line is the Cook Inlet belugas, the longest yearly survey series for the species; no yearly count exists worldwide. Estimates before 2004 used earlier methods. Each line is drawn against its own range, so compare shapes, not heights.</p>
+<noscript><p>The full table is in the data folder.</p></noscript>
 </section>
 
 <section class="closing">
@@ -65,7 +60,7 @@ include-after-body:
 ```
 
 <footer>
-<p><strong>Data.</strong> Cook Inlet: 1979 estimate from Calkins (1989), cited in the <a href="https://media.fisheries.noaa.gov/2022-09/cibw-5-year-review-2022.pdf">NOAA 5-year review (2022)</a>; 1994 to 2003 from <a href="https://www.fisheries.noaa.gov/resource/data/aerial-surveys-belugas-cook-inlet">NOAA aerial surveys</a> (Hobbs et al.); 2004 to 2022 annual estimates with 95% intervals from <a href="https://media.fisheries.noaa.gov/2023-06/PR2023-03.pdf">Goetz et al. (2023)</a>, whose recommended best estimate is 331 (290 to 386). Hudson Bay: aerial survey estimates from Fisheries and Oceans Canada, <a href="https://nmrwb.ca/wp-content/uploads/2019/12/DFO-2018-Harvest-advice-for-eastern-and-western-Hudson-Bay-Beluga-Delphinapterus-leucas.pdf">DFO (2018)</a> for western Hudson Bay and the <a href="https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/41302606.pdf">2024 stock assessment</a> for the Belcher Islands and eastern Hudson Bay; ranges are calculated from the reported standard errors, except 2015 west and 2024 east, which are as published. Sea ice: <a href="https://nsidc.org/data/g02135">NSIDC Sea Ice Index</a>, September extent. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against 1901 to 2000. <a href="data/beluga-series.csv">Download the table</a>. The call is synthesized from a published spectrogram, not a recording.</p>
+<p><strong>Data.</strong> Cook Inlet belugas: 1979 estimate from Calkins (1989), cited in the <a href="https://media.fisheries.noaa.gov/2022-09/cibw-5-year-review-2022.pdf">NOAA 5-year review (2022)</a>; 1994 to 2003 from <a href="https://www.fisheries.noaa.gov/resource/data/aerial-surveys-belugas-cook-inlet">NOAA aerial surveys</a> (Hobbs et al.); 2004 to 2022 from <a href="https://media.fisheries.noaa.gov/2023-06/PR2023-03.pdf">Goetz et al. (2023)</a>, whose recommended best estimate is 331. Sea ice: <a href="https://nsidc.org/data/g02135">NSIDC Sea Ice Index</a>, September extent. Shipping: total goods loaded, <a href="https://unctad.org/system/files/official-document/rmt2021_en_0.pdf">UNCTAD Review of Maritime Transport</a> (2021, 2024 and 2025 editions); years without a published total are bridged with a straight line. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against the 1901 to 2000 average. <a href="data/beluga-series.csv">Download the table</a>. The call is synthesized from a published spectrogram, not a recording.</p>
 </footer>
 
 </main>

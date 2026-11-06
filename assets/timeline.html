@@ -1,0 +1,92 @@
+<script>
+(function () {
+  // Simple timeline: one bold line for the animals, thin lines for pressures.
+  // Each line is drawn against its own range so the shapes can be compared.
+  var T = window.TL, NS = "http://www.w3.org/2000/svg";
+  var svg = document.getElementById("plot"), stats = document.getElementById("stats");
+  var slider = document.getElementById("slider"), yr = document.getElementById("year");
+  slider.min = T.y0; slider.max = T.y1; slider.value = T.start;
+  function el(n, at, p) { var e = document.createElementNS(NS, n); for (var k in at) e.setAttribute(k, at[k]); (p||svg).appendChild(e); return e; }
+  var W = 600, H = 250, L = 6, R = 6, TOP = 10, B = 28;
+  function X(y) { return L + (y-T.y0)/(T.y1-T.y0)*(W-L-R); }
+  function Y(f) { return H-B - f*(H-B-TOP); }
+  el("line", {class:"axis", x1:L, x2:W-R, y1:Y(0), y2:Y(0)});
+  var mid = Math.round((T.y0+T.y1)/2/25)*25;
+  [T.y0, mid, T.y1].forEach(function (y) { el("text", {class:"tick", x:X(y), y:H-6, "text-anchor": y===T.y0 ? "start" : y===T.y1 ? "end" : "middle"}).textContent = y; });
+  var cursor = el("line", {class:"cursor", y1:TOP, y2:Y(0)});
+  function fmt(s, v) {
+    if (s.fmt === "temp") return (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v).toFixed(2) + " °C";
+    if (s.fmt === "1") return v.toFixed(1);
+    if (s.fmt === "2") return v.toFixed(2);
+    return v.toLocaleString("en-US");
+  }
+  // Thin lines first so the bold animal line sits on top.
+  T.series.slice().reverse().forEach(function (s) {
+    var vals = s.data.map(function (r) { return r[1]; });
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals);
+    s.f = s.scale === "range" ? function (v) { return .06 + .94*(v-lo)/(hi-lo); } : function (v) { return v/hi; };
+    s.g = el("g", {class:"series t-"+s.key+(s.bold ? " bold" : "")});
+    s.path = el("path", {class:"line"}, s.g);
+    s.dotg = el("g", {}, s.g);
+  });
+  T.series.forEach(function (s) {
+    var p = document.createElement("p"); p.className = "stat t-"+s.key+(s.bold ? " bold" : "");
+    p.innerHTML = '<span class="num"></span><span class="lab"></span>';
+    stats.appendChild(p); s.num = p.firstChild; s.lab = p.lastChild; s.p = p;
+  });
+  function draw(year) {
+    yr.textContent = year;
+    cursor.setAttribute("x1", X(year)); cursor.setAttribute("x2", X(year));
+    T.series.forEach(function (s) {
+      var d = "", last = null; s.dotg.innerHTML = "";
+      s.data.forEach(function (r) {
+        if (r[0] > year) return;
+        var x = X(r[0]).toFixed(1), y = Y(s.f(r[1])).toFixed(1);
+        d += (d ? "L" : "M") + x + " " + y; last = r;
+        if (s.dots) el("circle", {class:"dot", cx:x, cy:y, r:4.5}, s.dotg);
+      });
+      s.path.setAttribute("d", d);
+      s.num.textContent = last ? fmt(s, last[1]) : "No data yet";
+      s.p.classList.toggle("missing", !last);
+      s.lab.textContent = s.label + (last && last[0] !== year ? ", " + last[0] : "");
+    });
+  }
+  slider.addEventListener("input", function () { stop(); draw(+slider.value); });
+  var timer = null, sw = document.getElementById("sweep"), step = Math.max(60, Math.round(8000/(T.y1-T.y0)));
+  function stop() { if (timer) { clearInterval(timer); timer = null; sw.innerHTML = "&#9654;"; sw.setAttribute("aria-label","Play timeline"); } }
+  sw.addEventListener("click", function () {
+    if (timer) return stop();
+    if (+slider.value >= T.y1 - 1) slider.value = T.y0;
+    draw(+slider.value); sw.innerHTML = "&#10074;&#10074;"; sw.setAttribute("aria-label","Pause timeline");
+    timer = setInterval(function () {
+      if (+slider.value >= T.y1) return stop();
+      slider.value = +slider.value + 1; draw(+slider.value);
+    }, step);
+  });
+  draw(+slider.value);
+
+  // The solid graphic wipes in from the left while the call itself is sounding.
+  var a = document.getElementById("audio"), call = document.getElementById("call"),
+      top = document.getElementById("call-top"), hint = document.getElementById("call-hint"), raf, HINT = hint.textContent;
+  function span() { return [+(a.dataset.start || 0), +(a.dataset.end || a.duration || 1)]; }
+  function wipe(p) { top.style.clipPath = "inset(0 " + (100 - p * 100) + "% 0 0)"; }
+  function tick() {
+    var c = span(); wipe(Math.min(Math.max((a.currentTime - c[0]) / (c[1] - c[0]), 0), 1));
+    if (!a.paused && !a.ended) raf = requestAnimationFrame(tick);
+  }
+  function reset() {
+    cancelAnimationFrame(raf); call.classList.remove("active");
+    call.setAttribute("aria-pressed", "false"); top.style.clipPath = ""; hint.textContent = HINT;
+  }
+  call.addEventListener("click", function () {
+    if (!a.paused) { a.pause(); hint.textContent = "Paused. Tap to continue"; return; }
+    if (a.ended || !call.classList.contains("active")) { a.currentTime = 0; wipe(0); }
+    call.classList.add("active"); call.setAttribute("aria-pressed", "true");
+    hint.textContent = "Listening";
+    var pr = a.play();
+    if (pr && pr.catch) pr.catch(function () { reset(); hint.textContent = "The sound could not play"; });
+  });
+  a.addEventListener("play", function () { cancelAnimationFrame(raf); raf = requestAnimationFrame(tick); });
+  a.addEventListener("ended", reset);
+})();
+</script>

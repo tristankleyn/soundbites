@@ -89,3 +89,15 @@ html:has(main.beluga){--bg:#d1dbe8}
 .beluga{--s3:#3a8a80;--s4:#4f6f96}
 html:has(main.orca),html:has(main.blue),html:has(main.beluga){--line:rgba(25,23,51,.16);--muted:#43404f}
 }
+/* Simple timeline: one bold animal line, thin pressure lines */
+:root{--t-fish:#1f7a6e;--t-ship:#59607a;--t-temp:#b8552c;--t-ice:#2f6aa3;--t-catch:#8a3b52}
+@media (prefers-color-scheme:dark){:root{--t-fish:#5cc4b2;--t-ship:#a7adc4;--t-temp:#f08f5f;--t-ice:#8fbbea;--t-catch:#e48aa2}}
+.t-species{--c:var(--s1)}.t-fish{--c:var(--t-fish)}.t-ship{--c:var(--t-ship)}.t-temp{--c:var(--t-temp)}.t-ice{--c:var(--t-ice)}.t-catch{--c:var(--t-catch)}
+#stats .stat{color:var(--c)}
+#stats .stat.bold .num{font-size:30px}
+#stats .stat:not(.bold) .num{font-size:19px}
+.series .line{stroke-width:2;opacity:.85}
+.series.bold .line{stroke-width:4}
+.series .dot{fill:var(--c);stroke:var(--bg);stroke-width:2}
+.axis{stroke:var(--ink);stroke-width:1;opacity:.35}
+#stats .stat.missing .num{font-size:15px;font-weight:400;color:var(--muted)}

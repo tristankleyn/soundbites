@@ -3,6 +3,7 @@ pagetitle: "Southern Resident orcas"
 description: "Only 76 Southern Resident killer whales remain. Hear their call and see their numbers."
 include-after-body:
   - assets/orca-script.html
+  - assets/timeline.html
   - assets/ears.html
 ---
 
@@ -19,24 +20,20 @@ include-after-body:
 <p class="scroll-hint" aria-hidden="true">&#8595;</p>
 </section>
 
-<section class="data-section" aria-label="Whales, salmon catch and shipping by year">
-<p id="year" class="year">2025</p>
+<section class="data-section" aria-label="Southern Resident killer whales, wild fish catch, shipping and ocean temperature by year">
+<p id="year" class="year"></p>
 
 ```{=html}
-<div class="stats">
-<p class="stat s1"><span id="v1" class="num">74</span><span class="lab">whales</span></p>
-<p class="stat s2"><span id="v2" class="num"></span><span class="lab">Chinook salmon caught</span></p>
-<p class="stat s3"><span id="v3" class="num"></span><span class="lab">cargo and passenger ship entries</span></p>
-</div>
-<svg id="plot" class="plot" viewBox="0 0 600 300" role="img" aria-label="Three lines by year: whale count, Chinook salmon caught and ship entries."></svg>
+<div class="stats" id="stats"></div>
+<svg id="plot" class="plot" viewBox="0 0 600 250" role="img" aria-label="Southern Resident killer whales, wild fish catch, shipping and ocean temperature by year. One bold line for the whales and thinner lines for pressures."></svg>
 <div class="slider-row">
 <button id="sweep" class="sweep" type="button" aria-label="Play timeline">&#9654;</button>
-<input id="slider" class="slider" type="range" min="1975" max="2026" step="1" value="2025" aria-label="Year">
+<input id="slider" class="slider" type="range" step="1" aria-label="Year">
 </div>
 ```
 
-<p class="note">Each line is drawn against its own highest year, so compare the shapes, not the heights. Catch reflects both fish numbers and fishing limits, and a shared trend does not show cause.</p>
-<noscript><p>76 whales were counted in 2026. The full table is in data/orca-series.csv.</p></noscript>
+<p class="note">The bold line is the Southern Resident killer whales, the best-counted orca population; no yearly count exists for orcas worldwide. Each line is drawn against its own range, so compare shapes, not heights. Lines rising together do not show cause.</p>
+<noscript><p>The full table is in the data folder.</p></noscript>
 </section>
 
 <section class="closing">
@@ -63,7 +60,7 @@ include-after-body:
 ```
 
 <footer>
-<p><strong>Data.</strong> Whales: July 1 census, 1976 to 2026, <a href="https://vitalsigns.pugetsoundinfo.wa.gov/VitalSignIndicator/Detail/32">Puget Sound Vital Signs</a> from the Center for Whale Research. Salmon: landed Chinook, 1975 to 2025, in Georgia Strait, Juan de Fuca, San Juan and other Puget Sound fisheries, <a href="https://www.psc.org/publications/technical-reports/technical-committee-reports/chinook/ctc-data-sets/">Pacific Salmon Commission</a> TCCHINOOK (26)-03, Tables A13 and A15 to A18. Ships: cargo and passenger vessels entering Washington waters, excluding the Columbia River, 1993 to 2025, <a href="https://apps.ecology.wa.gov/publications/SummaryPages/2608002.html">Washington Department of Ecology</a>. <a href="data/orca-series.csv">Download the table</a>.</p>
+<p><strong>Data.</strong> Whales: July 1 census, 1976 to 2026, <a href="https://vitalsigns.pugetsoundinfo.wa.gov/VitalSignIndicator/Detail/32">Puget Sound Vital Signs</a> from the Center for Whale Research. Fish: wild capture fisheries worldwide, 1975 to 2024, FAO via the World Bank and <a href="https://ourworldindata.org/grapher/capture-fishery-production">Our World in Data</a>. Shipping: total goods loaded, <a href="https://unctad.org/system/files/official-document/rmt2021_en_0.pdf">UNCTAD Review of Maritime Transport</a> (2021, 2024 and 2025 editions); years without a published total are bridged with a straight line. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against the 1901 to 2000 average. <a href="data/orca-series.csv">Download the table</a>.</p>
 </footer>
 
 </main>
