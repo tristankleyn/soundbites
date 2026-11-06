@@ -52,7 +52,7 @@ footer{border-top:1px solid var(--line);padding:26px 0 44px;font-size:13px}
 .est .ept{fill:var(--c);stroke:var(--bg);stroke-width:2}
 .est.alt .ept{fill:var(--bg);stroke:var(--c);stroke-width:2.5}
 .blue .slider{accent-color:var(--s1)}
-@media (prefers-color-scheme:dark){.call-tall img{filter:brightness(2.3) saturate(.9)}}
+
 .ears{border-top:1px solid var(--line);padding:56px 0 48px}
 .ears h2{margin:0 0 10px}
 .ears-word{font-weight:500;letter-spacing:.06em}

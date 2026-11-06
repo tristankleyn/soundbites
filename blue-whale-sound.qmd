@@ -11,8 +11,8 @@ include-after-body:
 <section class="hero">
 <p class="kicker">Blue whales</p>
 <button id="call" class="call call-tall" type="button" aria-label="Play the blue whale call" aria-pressed="false">
-<img class="call-base" src="assets/blue-call.png" alt="">
-<img id="call-top" class="call-top" src="assets/blue-call.png" alt="Spectrogram of a blue whale call: three curved harmonic lines.">
+<picture><source srcset="assets/blue-call-dark.png" media="(prefers-color-scheme: dark)"><img class="call-base" src="assets/blue-call-light.png" alt=""></picture>
+<picture><source srcset="assets/blue-call-dark.png" media="(prefers-color-scheme: dark)"><img id="call-top" class="call-top" src="assets/blue-call-light.png" alt="Spectrogram of a blue whale call: three curved harmonic lines."></picture>
 </button>
 <p class="call-hint" id="call-hint">Tap the call to hear it, sped up 10 times</p>
 <audio id="audio" src="assets/blue-call.mp3" preload="auto" data-start="1.137" data-end="2.983"></audio>

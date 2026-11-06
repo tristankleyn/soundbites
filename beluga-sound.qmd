@@ -11,8 +11,8 @@ include-after-body:
 <section class="hero">
 <p class="kicker">Belugas</p>
 <button id="call" class="call call-tall" type="button" aria-label="Play the beluga call" aria-pressed="false">
-<img class="call-base" src="assets/beluga-call.png" alt="">
-<img id="call-top" class="call-top" src="assets/beluga-call.png" alt="Spectrogram of a beluga whistle: a flat line that drops at the end, with a fainter copy above it.">
+<picture><source srcset="assets/beluga-call-dark.png" media="(prefers-color-scheme: dark)"><img class="call-base" src="assets/beluga-call-light.png" alt=""></picture>
+<picture><source srcset="assets/beluga-call-dark.png" media="(prefers-color-scheme: dark)"><img id="call-top" class="call-top" src="assets/beluga-call-light.png" alt="Spectrogram of a beluga whistle: a flat line that drops at the end, with a fainter copy above it."></picture>
 </button>
 <p class="call-hint" id="call-hint">Tap the call to hear it, at real speed</p>
 <audio id="audio" src="assets/beluga-call.mp3" preload="auto" data-start="0.92" data-end="1.72"></audio>
