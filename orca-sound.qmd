@@ -6,7 +6,7 @@ include-after-body:
   - assets/ears.html
 ---
 
-<main class="page">
+<main class="page orca">
 
 <section class="hero">
 <p class="kicker">Southern Resident killer whales</p>

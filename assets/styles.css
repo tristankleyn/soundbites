@@ -80,3 +80,12 @@ footer{border-top:1px solid var(--line);padding:26px 0 44px;font-size:13px}
 .beluga .slider{accent-color:var(--s1)}
 .join{fill:none;stroke:var(--c);stroke-width:1.5;opacity:.5}
 .panel{font:500 13px Inter,sans-serif;fill:var(--muted)}
+/* Light mode: each animal page has its own faded background so the pale call shows */
+@media (prefers-color-scheme:light){
+html:has(main.orca){--bg:#c1d4ba;--s3:#3f7d63}
+html:has(main.blue){--bg:#a6bfbb}
+html:has(main.beluga){--bg:#d1dbe8}
+.blue{--s3:#3d5f94}
+.beluga{--s3:#3a8a80;--s4:#4f6f96}
+html:has(main.orca),html:has(main.blue),html:has(main.beluga){--line:rgba(25,23,51,.16);--muted:#43404f}
+}
