@@ -1,0 +1,13 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - assets/
+website:
+  title: "Sound Bites"
+format:
+  html:
+    minimal: true
+    theme: none
+    css: assets/styles.css
+    toc: false

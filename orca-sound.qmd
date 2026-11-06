@@ -1,0 +1,52 @@
+---
+pagetitle: "74 | Southern Resident orcas"
+description: "Only 74 Southern Resident killer whales remain. Hear their call and see their numbers."
+include-after-body: assets/orca-script.html
+---
+
+<main class="page">
+
+<section class="hero">
+<p class="kicker">Southern Resident killer whales</p>
+<img class="call" src="assets/orca-call.png" alt="Spectrogram of an orca call: bright harmonic lines rising across the image.">
+<!-- Add your clip as assets/orca-call.mp3 and this button appears. -->
+<button id="play" class="play" type="button" hidden><span aria-hidden="true">&#9654;</span> <span id="play-label">Hear this call</span></button>
+<audio id="audio" src="assets/orca-call.mp3" preload="metadata"></audio>
+<p class="big">74</p>
+<p class="lede">That is the whole population.<br>Every one fits on this page.</p>
+<p class="scroll-hint" aria-hidden="true">&#8595;</p>
+</section>
+
+<section aria-labelledby="count-title">
+<h2 id="count-title">Each block is one whale</h2>
+<p class="meta">Census of July 1, 2025. Every whale belongs to one of three pods.</p>
+<div id="grid" class="grid-wrap">
+<noscript><p>J pod 27, K pod 14, L pod 33. The population has reached 98 at its peak, 24 more than today.</p></noscript>
+</div>
+</section>
+
+<section aria-labelledby="time-title">
+<h2 id="time-title">Numbers over time</h2>
+<div id="timeline" class="timeline"></div>
+<p class="note">Live captures for marine parks in the 1960s and early 1970s took 45 whales and killed at least 13 others. Listed as endangered in the United States in 2005.</p>
+</section>
+
+<section aria-labelledby="press-title">
+<h2 id="press-title">What is pressing on them</h2>
+<details><summary>Too little food</summary><p>They depend on Chinook salmon. Declining runs leave them nutritionally stressed, which affects reproduction.</p></details>
+<details><summary>Vessel noise</summary><p>Ship noise can mask the sounds they use to communicate and find food, and boat interference lowers foraging efficiency.</p></details>
+<details><summary>Contaminants</summary><p>Pollutants in the marine food web are one of the main threats named by NOAA Fisheries.</p></details>
+<details><summary>So few of them</summary><p>A small population has little margin, and these whales reproduce less than other killer whales in the region.</p></details>
+</section>
+
+<section class="closing">
+<h2>You are wearing this call</h2>
+<p>Profits from this shirt go to wildlife conservation.</p>
+<p><a href="https://www.orcasound.net/">Listen to the Salish Sea live with Orcasound</a></p>
+</section>
+
+<footer>
+<p><strong>Sources.</strong> Population, pods, peak and captures: <a href="https://www.whaleresearch.com/orca-population">Center for Whale Research</a>. Listing and threats: <a href="https://www.fisheries.noaa.gov/west-coast/marine-mammal-protection/infographic-how-and-why-southern-resident-killer-whales-were">NOAA Fisheries</a>. Food and reproduction: <a href="https://theorcasonian.com/orca-survey-2025-census-update">The Orca Sonian</a>. Vessel noise: <a href="https://www.orcasound.net/">Orcasound</a>.</p>
+</footer>
+
+</main>

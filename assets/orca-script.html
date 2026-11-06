@@ -1,0 +1,41 @@
+<script>
+(function () {
+  // Update these numbers after each census.
+  var DATA = {
+    pods: [["J pod", 27], ["K pod", 14], ["L pod", 33]],
+    peak: 98,
+    history: [["1974", 71, "after the captures"], ["Mid-1990s", 98, "peak"], ["2001", 78, ""], ["2025", 74, "today"]]
+  };
+  var total = DATA.pods.reduce(function (s, p) { return s + p[1]; }, 0);
+  var grid = document.getElementById("grid");
+  function group(label, n, cls) {
+    var g = document.createElement("div"); g.className = "pod " + cls;
+    var h = document.createElement("h3"); h.innerHTML = label + " <span>" + n + "</span>"; g.appendChild(h);
+    var b = document.createElement("div"); b.className = "blocks"; b.setAttribute("role", "img"); b.setAttribute("aria-label", n + " blocks");
+    for (var i = 0; i < n; i++) { var s = document.createElement("i"); s.style.setProperty("--d", (i * 28) + "ms"); b.appendChild(s); }
+    g.appendChild(b); return g;
+  }
+  DATA.pods.forEach(function (p, i) { grid.appendChild(group(p[0], p[1], "alive p" + i)); });
+  grid.appendChild(group("Missing since the peak of " + DATA.peak, DATA.peak - total, "ghost"));
+
+  var tl = document.getElementById("timeline");
+  DATA.history.forEach(function (r) {
+    var row = document.createElement("div"); row.className = "row";
+    row.innerHTML = '<span class="yr">' + r[0] + '</span><span class="bar" role="img" aria-label="' + r[1] + ' whales"><b style="--w:' + (r[1] / DATA.peak * 100) + '%"></b></span><span class="n">' + r[1] + '</span>';
+    tl.appendChild(row);
+  });
+
+  var els = document.querySelectorAll(".pod, .row");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    els.forEach(function (e) { io.observe(e); });
+  } else { els.forEach(function (e) { e.classList.add("in"); }); }
+
+  var a = document.getElementById("audio"), btn = document.getElementById("play"), lab = document.getElementById("play-label");
+  a.addEventListener("loadedmetadata", function () { btn.hidden = false; });
+  btn.addEventListener("click", function () { if (a.paused) { a.play(); lab.textContent = "Pause"; } else { a.pause(); lab.textContent = "Hear this call"; } });
+  a.addEventListener("ended", function () { lab.textContent = "Hear this call"; });
+})();
+</script>

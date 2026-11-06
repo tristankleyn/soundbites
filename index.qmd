@@ -1,0 +1,9 @@
+---
+pagetitle: "Sound Bites"
+---
+
+<main class="page landing">
+<h1>Sound Bites</h1>
+<p>Real wildlife calls, and the animals behind them.</p>
+<p><a href="orca-sound.html">Southern Resident orcas</a></p>
+</main>
