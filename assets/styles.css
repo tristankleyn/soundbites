@@ -73,3 +73,10 @@ footer{border-top:1px solid var(--line);padding:26px 0 44px;font-size:13px}
 .ears-pct{position:absolute;top:14px;right:16px;font:500 18px Inter,sans-serif;font-variant-numeric:tabular-nums}
 .ears-msg{min-height:1.5em;margin:14px 0 0;font-size:14px;color:var(--muted)}
 @media (min-width:640px){.ears-grid{grid-template-columns:repeat(4,1fr)}}
+.beluga{--s1:#0f5c63;--s2:#2f8f8a;--s3:#7cbcb2;--s4:#6f8fb4;--s5:#c26a3d}
+@media (prefers-color-scheme:dark){.beluga{--s1:#8fd3d3;--s2:#4fb3a8;--s3:#2e7f78;--s4:#9db8db;--s5:#e5925f}}
+.s4{--c:var(--s4)}.s5{--c:var(--s5)}
+.beluga .lede{margin-top:26px}
+.beluga .slider{accent-color:var(--s1)}
+.join{fill:none;stroke:var(--c);stroke-width:1.5;opacity:.5}
+.panel{font:500 13px Inter,sans-serif;fill:var(--muted)}

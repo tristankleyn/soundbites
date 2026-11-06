@@ -1,0 +1,71 @@
+---
+pagetitle: "Belugas"
+description: "Hear a beluga whistle and see two beluga populations beside Arctic sea ice and ocean temperature."
+include-after-body:
+  - assets/beluga-script.html
+  - assets/ears.html
+---
+
+<main class="page beluga">
+
+<section class="hero">
+<p class="kicker">Belugas</p>
+<button id="call" class="call call-tall" type="button" aria-label="Play the beluga call" aria-pressed="false">
+<img class="call-base" src="assets/beluga-call.png" alt="">
+<img id="call-top" class="call-top" src="assets/beluga-call.png" alt="Spectrogram of a beluga whistle: a flat line that drops at the end, with a fainter copy above it.">
+</button>
+<p class="call-hint" id="call-hint">Tap the call to hear it, at real speed</p>
+<audio id="audio" src="assets/beluga-call.mp3" preload="auto" data-start="0.92" data-end="1.72"></audio>
+<p class="lede">Cook Inlet in Alaska had about 1,300 belugas in 1979. Recent surveys count about 300 to 400. In eastern Hudson Bay, the 2024 survey found about 1,500, the lowest yet.</p>
+<p class="scroll-hint" aria-hidden="true">&#8595;</p>
+</section>
+
+<section class="data-section" aria-label="Beluga estimates, Arctic sea ice and ocean temperature by year">
+<p id="year" class="year">2025</p>
+
+```{=html}
+<div class="stats">
+<p class="stat s1"><span id="v0" class="num"></span><span class="lab" id="v0y" data-base="Cook Inlet belugas">Cook Inlet belugas</span></p>
+<p class="stat s2"><span id="v1" class="num"></span><span class="lab" id="v1y" data-base="Western Hudson Bay belugas">Western Hudson Bay belugas</span></p>
+<p class="stat s3"><span id="v2" class="num"></span><span class="lab" id="v2y" data-base="Eastern Hudson Bay belugas">Eastern Hudson Bay belugas</span></p>
+<p class="stat s4"><span id="v3" class="num"></span><span class="lab">million km² of Arctic sea ice in September</span></p>
+<p class="stat s5"><span id="v4" class="num"></span><span class="lab">ocean temperature vs the 20th-century average</span></p>
+</div>
+<svg id="plot" class="plot" viewBox="0 0 600 384" role="img" aria-label="Survey estimates for three beluga populations with 95% ranges, above Arctic sea ice in September and global ocean temperature, 1975 to 2026."></svg>
+<div class="slider-row">
+<button id="sweep" class="sweep" type="button" aria-label="Play timeline">&#9654;</button>
+<input id="slider" class="slider" type="range" min="1975" max="2026" step="1" value="2025" aria-label="Year">
+</div>
+```
+
+<p class="note">Beluga numbers are survey estimates, shown as dots with 95% ranges cut off at the top of the chart, and each population is drawn against its own highest estimate. Hollow Cook Inlet dots use earlier methods, so they don't line up exactly with the solid ones. Sea ice is drawn from zero; ocean temperature is stretched to fill its panel. The figure shown for each population is its most recent survey up to the chosen year.</p>
+<noscript><p>The full table is in data/beluga-series.csv.</p></noscript>
+</section>
+
+<section class="closing">
+<p>You are wearing this call.</p>
+</section>
+
+```{=html}
+<section class="ears" data-animal="beluga" aria-labelledby="ears-title">
+<h2 id="ears-title"><span class="ears-word">EARS</span> for belugas</h2>
+<p class="ears-lede">All of our proceeds go to supporting wildlife. Have your own say below in where the money goes.</p>
+<form class="ears-code" novalidate>
+<label for="ears-key">Code from your shirt tag</label>
+<input id="ears-key" name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXX-XXXX" maxlength="9">
+</form>
+<div class="ears-grid" role="group" aria-label="Choose where the money goes">
+<button type="button" class="ears-opt" data-choice="E" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 13c-5-3-11-4-17-3v26c6-1 12 0 17 3 5-3 11-4 17-3V10c-6-1-12 0-17 3z"/><path d="M24 13v26"/></svg><span class="ears-name"><b>E</b>ducation</span><span class="ears-desc">Teaching and outreach</span><span class="ears-pct" data-k="E"></span></button>
+<button type="button" class="ears-opt" data-choice="A" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6l15 6v11c0 9-6 16-15 19C15 39 9 32 9 23V12z"/><path d="M24 33c-4-3-5-8-1-13 3 3 6 6 1 13zM24 33v-9"/></svg><span class="ears-name"><b>A</b>ction</span><span class="ears-desc">Protecting habitat and reducing threats</span><span class="ears-pct" data-k="A"></span></button>
+<button type="button" class="ears-opt" data-choice="R" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M5 24h4l3-8 4 16 4-12 3 8 3-4h3"/><circle cx="33" cy="22" r="8"/><path d="M39 28l5 5"/></svg><span class="ears-name"><b>R</b>esearch</span><span class="ears-desc">Monitoring and science</span><span class="ears-pct" data-k="R"></span></button>
+<button type="button" class="ears-opt" data-choice="S" disabled><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 30V18"/><path d="M24 20c-1-5-5-8-10-8 0 5 4 9 10 8zM24 23c1-5 5-8 10-8 0 5-4 9-10 8z"/><path d="M6 33c4 0 6 3 10 3h8c2 0 2-3 0-3h-6M42 33c-4 0-6 3-10 3"/><path d="M6 40c6 0 9 2 18 2s12-2 18-2"/></svg><span class="ears-name"><b>S</b>tewardship</span><span class="ears-desc">Community-led conservation</span><span class="ears-pct" data-k="S"></span></button>
+</div>
+<p class="ears-msg" aria-live="polite"></p>
+</section>
+```
+
+<footer>
+<p><strong>Data.</strong> Cook Inlet: 1979 estimate from Calkins (1989), cited in the <a href="https://media.fisheries.noaa.gov/2022-09/cibw-5-year-review-2022.pdf">NOAA 5-year review (2022)</a>; 1994 to 2003 from <a href="https://www.fisheries.noaa.gov/resource/data/aerial-surveys-belugas-cook-inlet">NOAA aerial surveys</a> (Hobbs et al.); 2004 to 2022 annual estimates with 95% intervals from <a href="https://media.fisheries.noaa.gov/2023-06/PR2023-03.pdf">Goetz et al. (2023)</a>, whose recommended best estimate is 331 (290 to 386). Hudson Bay: aerial survey estimates from Fisheries and Oceans Canada, <a href="https://nmrwb.ca/wp-content/uploads/2019/12/DFO-2018-Harvest-advice-for-eastern-and-western-Hudson-Bay-Beluga-Delphinapterus-leucas.pdf">DFO (2018)</a> for western Hudson Bay and the <a href="https://waves-vagues.dfo-mpo.gc.ca/library-bibliotheque/41302606.pdf">2024 stock assessment</a> for the Belcher Islands and eastern Hudson Bay; ranges are calculated from the reported standard errors, except 2015 west and 2024 east, which are as published. Sea ice: <a href="https://nsidc.org/data/g02135">NSIDC Sea Ice Index</a>, September extent. Ocean temperature: <a href="https://www.ncei.noaa.gov/access/monitoring/climate-at-a-glance/global/time-series">NOAA Climate at a Glance</a>, global ocean, yearly, against 1901 to 2000. <a href="data/beluga-series.csv">Download the table</a>. The call is synthesized from a published spectrogram, not a recording.</p>
+</footer>
+
+</main>

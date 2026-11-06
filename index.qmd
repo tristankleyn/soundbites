@@ -7,4 +7,5 @@ pagetitle: "Sound Bites"
 <p>Real wildlife calls, and the animals behind them.</p>
 <p><a href="orca-sound.html">Southern Resident orcas</a></p>
 <p><a href="blue-whale-sound.html">Blue whales</a></p>
+<p><a href="beluga-sound.html">Belugas</a></p>
 </main>
